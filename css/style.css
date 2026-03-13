@@ -1,0 +1,1042 @@
+/* Reset & Base */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  background: #f5f5f5;
+  color: #1a1a1a;
+  overflow: hidden;
+  -webkit-font-smoothing: antialiased;
+  height: 100vh;
+  width: 100vw;
+  position: fixed;
+}
+
+/* App Container */
+#app {
+  min-height: 100vh;
+  height: 100vh;
+  position: relative;
+  display: flex;
+  align-items: stretch;
+  justify-content: center;
+  padding: 0;
+  padding-top: env(safe-area-inset-top);
+  padding-bottom: env(safe-area-inset-bottom);
+  padding-left: env(safe-area-inset-left);
+  padding-right: env(safe-area-inset-right);
+}
+
+/* Screens */
+.screen {
+  display: none;
+  min-height: 100vh;
+  height: 100vh;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  width: 100%;
+}
+
+.screen.active {
+  display: flex;
+  flex-direction: column;
+  opacity: 1;
+}
+
+/* Container */
+.container {
+  flex: 1;
+  padding: 0;
+  max-width: none;
+  margin: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+/* Calculator Body */
+.calculator-body {
+  background: #ffffff;
+  border-radius: 0;
+  padding: 1.25rem 1rem;
+  box-shadow: none;
+  border: none;
+  position: relative;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+}
+
+.calculator-body::before {
+  display: none;
+}
+
+/* Calculator Brand */
+.calculator-brand {
+  font-size: 0.65rem;
+  font-weight: 400;
+  letter-spacing: 0.15em;
+  color: #1a1a1a;
+  text-align: left;
+  margin-bottom: 1rem;
+  text-shadow: none;
+  padding: 0;
+  background: none;
+  border-radius: 0;
+  text-transform: uppercase;
+  flex-shrink: 0;
+}
+
+/* LED Display */
+.led-display {
+  background: #1a1a1a;
+  border: none;
+  border-radius: 0;
+  padding: 1.5rem 1rem;
+  margin-bottom: 1rem;
+  box-shadow: none;
+  position: relative;
+  overflow: hidden;
+  min-height: 80px;
+  flex-shrink: 0;
+}
+
+.led-display::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: radial-gradient(circle, #0a0a0a 1px, transparent 1px);
+  background-size: 6px 6px;
+  background-position: 0 0;
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+.led-display::after {
+  display: none;
+}
+
+.display-text {
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 1.25rem;
+  font-weight: 300;
+  color: #ffffff;
+  text-align: left;
+  text-shadow: none;
+  letter-spacing: 0.05em;
+  filter: none;
+  position: relative;
+  z-index: 1;
+  line-height: 1.6;
+}
+
+/* Start Screen */
+#screen-start .container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.logo {
+  font-size: 2.5rem;
+  font-weight: 300;
+  margin-bottom: 0.5rem;
+  margin-top: 1rem;
+  color: #1a1a1a;
+  letter-spacing: 0.05em;
+  text-shadow: none;
+}
+
+.tagline {
+  font-size: 0.75rem;
+  color: #666666;
+  margin-bottom: 2rem;
+  letter-spacing: 0.05em;
+  font-weight: 400;
+  text-shadow: none;
+}
+
+/* Buttons */
+.btn-primary {
+  background: #1a1a1a;
+  color: #ffffff;
+  border: none;
+  padding: 1.25rem 2.5rem;
+  min-height: 48px;
+  font-size: 0.875rem;
+  border-radius: 0;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  box-shadow: none;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  text-transform: uppercase;
+}
+
+.btn-primary:active {
+  transform: none;
+  background: #000000;
+  box-shadow: none;
+}
+
+/* Calculator Panel */
+.calc-panel {
+  background: #ffffff;
+  border-radius: 0;
+  margin-bottom: 0;
+  box-shadow: none;
+  border: none;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+}
+
+.panel-title {
+  font-size: 0.75rem;
+  margin-bottom: 0.75rem;
+  margin-top: 0;
+  color: #1a1a1a;
+  font-weight: 500;
+  letter-spacing: 0.15em;
+  text-shadow: none;
+  text-transform: uppercase;
+  flex-shrink: 0;
+}
+
+.panel-title:not(:first-child) {
+  margin-top: 1.5rem;
+  padding-top: 1rem;
+  border-top: 1px solid #e0e0e0;
+}
+
+.panel-text {
+  color: #666666;
+  line-height: 1.6;
+  font-size: 0.875rem;
+  margin-bottom: 1.5rem;
+  font-weight: 400;
+}
+
+/* Button Grid */
+.button-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0.5rem;
+  margin-top: 1rem;
+}
+
+.calc-btn {
+  background: #ffffff;
+  color: #1a1a1a;
+  border: 1px solid #e0e0e0;
+  padding: 1rem 0.5rem;
+  min-height: 48px;
+  font-size: 1.25rem;
+  border-radius: 0;
+  cursor: pointer;
+  font-weight: 300;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  box-shadow: none;
+  transition: background 0.15s ease;
+}
+
+.calc-btn:active {
+  transform: none;
+  background: #f5f5f5;
+  box-shadow: none;
+}
+
+.calc-btn.operator {
+  background: #1a1a1a;
+  color: #ffffff;
+  border-color: #1a1a1a;
+}
+
+.calc-btn.wide {
+  grid-column: span 2;
+}
+
+/* Settings */
+.setting-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.875rem 0;
+  border-bottom: 1px solid #e0e0e0;
+  font-size: 0.875rem;
+  font-weight: 400;
+  letter-spacing: 0.05em;
+}
+
+.setting-item:last-child {
+  border-bottom: none;
+}
+
+.setting-item span {
+  color: #1a1a1a;
+  text-shadow: none;
+}
+
+.setting-item .value {
+  color: #666666;
+}
+
+/* Toggle Switch */
+.toggle-switch {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  cursor: pointer;
+}
+
+.toggle-switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+  position: absolute;
+}
+
+.toggle-slider {
+  position: relative;
+  width: 48px;
+  height: 24px;
+  background: #e0e0e0;
+  border: 1px solid #1a1a1a;
+  transition: background 0.15s ease;
+  flex-shrink: 0;
+}
+
+.toggle-slider::before {
+  content: "";
+  position: absolute;
+  height: 18px;
+  width: 18px;
+  left: 2px;
+  top: 2px;
+  background: #1a1a1a;
+  transition: transform 0.15s ease;
+}
+
+.toggle-switch input:checked + .toggle-slider {
+  background: #1a1a1a;
+}
+
+.toggle-switch input:checked + .toggle-slider::before {
+  background: #ffffff;
+  transform: translateX(24px);
+}
+
+.toggle-labels {
+  display: flex;
+  gap: 0.5rem;
+  font-size: 0.625rem;
+  font-weight: 400;
+  letter-spacing: 0.1em;
+  color: #666666;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.toggle-labels .label-left,
+.toggle-labels .label-right {
+  transition: color 0.15s ease;
+}
+
+.toggle-switch input:not(:checked) ~ .toggle-labels .label-left {
+  color: #1a1a1a;
+  font-weight: 500;
+}
+
+.toggle-switch input:checked ~ .toggle-labels .label-right {
+  color: #1a1a1a;
+  font-weight: 500;
+}
+
+@media (max-width: 360px) {
+  .toggle-labels {
+    font-size: 0.55rem;
+    gap: 0.25rem;
+  }
+}
+
+/* Bottom Navigation */
+.bottom-nav {
+  display: flex;
+  gap: 0;
+  margin-top: auto;
+  border-top: 1px solid #e0e0e0;
+  padding-top: 0;
+  flex-shrink: 0;
+}
+
+.nav-item {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  border: none;
+  color: #666666;
+  cursor: pointer;
+  padding: 1rem 0.5rem;
+  min-height: 56px;
+  transition: all 0.15s ease;
+  border-radius: 0;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  box-shadow: none;
+  border-bottom: 2px solid transparent;
+}
+
+.nav-item:hover {
+  color: #1a1a1a;
+}
+
+.nav-item:active {
+  transform: none;
+}
+
+.nav-item.active {
+  background: transparent;
+  color: #1a1a1a;
+  box-shadow: none;
+  border-color: transparent;
+  border-bottom: 2px solid #1a1a1a;
+}
+
+.nav-item.active:active {
+  box-shadow: none;
+}
+
+.nav-label {
+  font-size: 0.7rem;
+  font-weight: 500;
+  letter-spacing: 0.15em;
+}
+
+/* Responsive */
+@media (min-width: 768px) {
+  #app {
+    padding: 1rem;
+    align-items: center;
+  }
+
+  .container {
+    max-width: 500px;
+    margin: 0 auto;
+    height: auto;
+    justify-content: center;
+  }
+
+  .calculator-body {
+    padding: 1.5rem;
+    height: auto;
+    box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.1);
+  }
+
+  .screen {
+    height: auto;
+  }
+
+  .logo {
+    font-size: 2.5rem;
+  }
+
+  .tagline {
+    font-size: 0.875rem;
+  }
+
+  .display-text {
+    font-size: 1.25rem;
+  }
+
+  .led-display {
+    padding: 2rem 1.5rem;
+    margin-bottom: 1.5rem;
+    min-height: 100px;
+  }
+
+  .calc-panel {
+    padding: 1.5rem;
+    overflow-y: visible;
+  }
+
+  .tuner-meter {
+    padding: 1.5rem;
+    margin: 1.5rem 0;
+  }
+
+  .meter-scale {
+    height: 100px;
+  }
+
+  .tuner-controls {
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .dial-outer {
+    width: 320px;
+    height: 320px;
+  }
+
+  .dial-inner {
+    width: 260px;
+    height: 260px;
+  }
+
+  .dial-intune-zone {
+    width: 260px;
+    height: 260px;
+  }
+
+  .tuner-info-compact .detected-note {
+    font-size: 4rem;
+  }
+
+  .dial-labels {
+    width: 320px;
+  }
+}
+
+/* Cello Tuner Styles */
+/* Circular Dial - Braun T3 Inspired */
+.tuner-dial {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0 1rem 0.5rem;
+  flex-shrink: 0;
+}
+
+.dial-outer {
+  position: relative;
+  width: 280px;
+  height: 280px;
+  background: #ffffff;
+  border-radius: 50%;
+  border: 2px solid #1a1a1a;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow:
+    inset 0 0 0 12px #fafafa,
+    inset 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.dial-marks {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+}
+
+.dial-marks::before {
+  content: "";
+  position: absolute;
+  inset: 12px;
+  border-radius: 50%;
+  background: repeating-conic-gradient(
+    from 0deg,
+    transparent 0deg,
+    transparent 3.4deg,
+    #1a1a1a 3.4deg,
+    #1a1a1a 3.8deg,
+    transparent 3.8deg,
+    transparent 36deg
+  );
+  -webkit-mask: radial-gradient(
+    circle,
+    transparent 120px,
+    black 120px,
+    black 130px,
+    transparent 130px
+  );
+  mask: radial-gradient(
+    circle,
+    transparent 120px,
+    black 120px,
+    black 130px,
+    transparent 130px
+  );
+}
+
+.dial-marks::after {
+  content: "";
+  position: absolute;
+  inset: 12px;
+  border-radius: 50%;
+  background: repeating-conic-gradient(
+    from 0deg,
+    #1a1a1a 0deg,
+    #1a1a1a 0.8deg,
+    transparent 0.8deg,
+    transparent 18deg
+  );
+  -webkit-mask: radial-gradient(
+    circle,
+    transparent 120px,
+    black 120px,
+    black 132px,
+    transparent 132px
+  );
+  mask: radial-gradient(
+    circle,
+    transparent 120px,
+    black 120px,
+    black 132px,
+    transparent 132px
+  );
+}
+
+.dial-inner {
+  position: relative;
+  width: 220px;
+  height: 220px;
+  background: #ffffff;
+  border-radius: 50%;
+  border: 1px solid #e0e0e0;
+  z-index: 2;
+}
+
+.dial-intune-zone {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 220px;
+  height: 220px;
+  background: conic-gradient(
+    from 344deg at center,
+    transparent 0deg,
+    rgba(26, 26, 26, 0.08) 0deg,
+    rgba(26, 26, 26, 0.08) 32deg,
+    transparent 32deg
+  );
+  transform: translate(-50%, -50%);
+  z-index: 0;
+  pointer-events: none;
+  transition: background 0.2s ease;
+  border-radius: 50%;
+}
+
+.dial-intune-zone.active {
+  background: conic-gradient(
+    from 344deg at center,
+    transparent 0deg,
+    rgba(26, 26, 26, 0.25) 0deg,
+    rgba(26, 26, 26, 0.25) 32deg,
+    transparent 32deg
+  );
+}
+
+.dial-needle {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 2px;
+  height: 90px;
+  background: #1a1a1a;
+  transform-origin: bottom center;
+  transform: translateX(-50%) translateY(-100%) rotate(0deg);
+  transition: transform 0.15s ease-out;
+  z-index: 1;
+  border-radius: 1px;
+}
+
+.dial-needle::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 8px;
+  height: 8px;
+  background: #1a1a1a;
+  border-radius: 50%;
+  transform: translateX(-50%) translateY(-50%);
+}
+
+.dial-needle::after {
+  content: "";
+  position: absolute;
+  bottom: -6px;
+  left: 50%;
+  width: 12px;
+  height: 12px;
+  background: #1a1a1a;
+  border-radius: 50%;
+  transform: translateX(-50%);
+  border: 2px solid #ffffff;
+}
+
+.dial-indicator {
+  position: absolute;
+  top: 8px;
+  left: 50%;
+  width: 3px;
+  height: 16px;
+  background: #1a1a1a;
+  transform: translateX(-50%);
+  z-index: 3;
+  border-radius: 1.5px;
+}
+
+.dial-labels {
+  display: flex;
+  justify-content: space-between;
+  width: 280px;
+  margin-top: -0.5rem;
+  padding: 0 2rem;
+}
+
+.dial-label {
+  font-size: 1rem;
+  font-weight: 400;
+  color: #666666;
+  letter-spacing: 0.1em;
+}
+
+.dial-label.center {
+  color: #1a1a1a;
+  font-weight: 500;
+  font-size: 1.25rem;
+}
+
+.tuner-info-compact {
+  text-align: center;
+  margin: 1rem 0;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.tuner-info-compact .detected-note {
+  font-size: 3rem;
+  font-weight: 300;
+  color: #1a1a1a;
+  letter-spacing: 0.05em;
+  line-height: 1;
+  transition: opacity 0.15s ease;
+}
+
+.tuner-info-compact .detected-note[style*="cursor: pointer"] {
+  user-select: none;
+  cursor: pointer;
+}
+
+.tuner-info-compact .detected-note[style*="cursor: pointer"]:active {
+  opacity: 0.6;
+}
+
+.tuner-meta {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+}
+
+.tuner-info-compact .detected-freq {
+  font-size: 0.875rem;
+  font-weight: 400;
+  color: #666666;
+  letter-spacing: 0.05em;
+}
+
+.tuner-info-compact .cents-off {
+  font-size: 0.875rem;
+  font-weight: 400;
+  color: #666666;
+  letter-spacing: 0.05em;
+}
+
+.tuner-info-compact .cents-off.in-tune {
+  color: #1a1a1a;
+  font-weight: 500;
+}
+
+/* Compact frequency selector for settings */
+.freq-select-compact {
+  padding: 0.5rem 0.75rem;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 0.875rem;
+  font-weight: 400;
+  background: #ffffff;
+  border: 1px solid #e0e0e0;
+  border-radius: 0;
+  color: #1a1a1a;
+  cursor: pointer;
+  box-shadow: none;
+  min-width: 120px;
+}
+
+.tuner-controls {
+  margin-bottom: 1rem;
+  padding: 1rem;
+  background: #fafafa;
+  border-radius: 0;
+  border: none;
+  border-left: 3px solid #1a1a1a;
+  flex-shrink: 0;
+}
+
+.tuner-controls label {
+  display: block;
+  color: #1a1a1a;
+  font-size: 0.75rem;
+  font-weight: 500;
+  margin-bottom: 0.5rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.freq-select {
+  width: 100%;
+  padding: 0.75rem;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 1rem;
+  font-weight: 400;
+  background: #ffffff;
+  border: 1px solid #e0e0e0;
+  border-radius: 0;
+  color: #1a1a1a;
+  cursor: pointer;
+  box-shadow: none;
+}
+
+/* Tuner Meter */
+.tuner-meter {
+  background: #fafafa;
+  padding: 1.25rem 1rem;
+  border-radius: 0;
+  margin: 1rem 0;
+  border: none;
+  border-left: 3px solid #1a1a1a;
+  flex-shrink: 0;
+}
+
+.meter-labels {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 0.5rem;
+}
+
+.meter-label {
+  font-size: 0.625rem;
+  font-weight: 400;
+  color: #666666;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.meter-label.center {
+  color: #1a1a1a;
+  font-weight: 500;
+}
+
+.meter-scale {
+  position: relative;
+  height: 70px;
+  background: linear-gradient(
+    to right,
+    #e0e0e0 0%,
+    #1a1a1a 48%,
+    #1a1a1a 52%,
+    #e0e0e0 100%
+  );
+  border-radius: 0;
+  border: 1px solid #e0e0e0;
+  overflow: hidden;
+  margin-bottom: 1rem;
+}
+
+.scale-marks {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: repeating-linear-gradient(
+    to right,
+    transparent,
+    transparent 9%,
+    rgba(0, 0, 0, 0.3) 9%,
+    rgba(0, 0, 0, 0.3) 10%,
+    transparent 10%
+  );
+  pointer-events: none;
+}
+
+.scale-marks::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: #1a1a1a;
+  transform: translateX(-50%);
+}
+
+.meter-needle {
+  position: absolute;
+  left: 50%;
+  top: 0;
+  bottom: 0;
+  width: 3px;
+  background: #1a1a1a;
+  transform: translateX(-50%);
+  transition: left 0.15s ease-out;
+  box-shadow: none;
+  border-radius: 0;
+}
+
+.tuner-info {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.5rem;
+  text-align: center;
+}
+
+.detected-note {
+  font-size: 2.5rem;
+  font-weight: 300;
+  color: #1a1a1a;
+  letter-spacing: 0.05em;
+}
+
+.detected-freq {
+  font-size: 0.875rem;
+  font-weight: 400;
+  color: #666666;
+}
+
+.cents-off {
+  font-size: 0.875rem;
+  font-weight: 400;
+  color: #666666;
+}
+
+.cents-off.in-tune {
+  color: #1a1a1a;
+  font-weight: 500;
+}
+
+/* Tuner Toggle Button */
+.tuner-toggle {
+  width: 100%;
+  padding: 1rem;
+  min-height: 48px;
+  background: #1a1a1a;
+  color: #ffffff;
+  border: none;
+  border-radius: 0;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 0.875rem;
+  font-weight: 500;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  box-shadow: none;
+  transition: all 0.15s ease;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin: 1rem 0;
+  flex-shrink: 0;
+}
+
+.tuner-toggle:active {
+  transform: none;
+  background: #000000;
+  box-shadow: none;
+}
+
+.tuner-toggle.active {
+  background: #ffffff;
+  color: #1a1a1a;
+  border: 1px solid #1a1a1a;
+  box-shadow: none;
+}
+
+.toggle-icon {
+  font-size: 1.5rem;
+}
+
+.toggle-text {
+  letter-spacing: 0.1em;
+}
+
+.string-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+  margin: 1.5rem 0;
+}
+
+.string-btn {
+  background: #ffffff;
+  color: #1a1a1a;
+  border: 1px solid #e0e0e0;
+  padding: 2rem 1rem;
+  border-radius: 0;
+  cursor: pointer;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  box-shadow: none;
+  transition: all 0.15s ease;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.string-btn:active {
+  transform: none;
+  background: #f5f5f5;
+  box-shadow: none;
+}
+
+.string-btn.playing {
+  background: #1a1a1a;
+  color: #ffffff;
+  border-color: #1a1a1a;
+  box-shadow: none;
+}
+
+.string-name {
+  font-size: 2.5rem;
+  font-weight: 300;
+  letter-spacing: 0.05em;
+}
+
+.string-label {
+  font-size: 0.875rem;
+  font-weight: 400;
+  opacity: 0.7;
+  letter-spacing: 0.1em;
+}
+
+.tuner-hint {
+  text-align: center;
+  color: #666666;
+  font-size: 0.75rem;
+  font-weight: 400;
+  margin-top: 0.5rem;
+  opacity: 1;
+  letter-spacing: 0.05em;
+  flex-shrink: 0;
+}
