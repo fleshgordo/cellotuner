@@ -35,7 +35,10 @@ const Router = {
 
     // Update browser history
     if (pushState) {
-      const url = screenName === "home" ? "/" : "#" + screenName;
+      const url =
+        screenName === "home"
+          ? window.location.pathname
+          : window.location.pathname + "#" + screenName;
       history.pushState({ screen: screenName }, "", url);
     }
 
