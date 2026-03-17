@@ -12,6 +12,7 @@ body {
   overflow: hidden;
   -webkit-font-smoothing: antialiased;
   height: 100vh;
+  height: 100dvh;
   width: 100vw;
   position: fixed;
 }
@@ -19,7 +20,9 @@ body {
 /* App Container */
 #app {
   min-height: 100vh;
+  min-height: 100dvh;
   height: 100vh;
+  height: 100dvh;
   position: relative;
   display: flex;
   align-items: stretch;
@@ -35,7 +38,9 @@ body {
 .screen {
   display: none;
   min-height: 100vh;
+  min-height: 100dvh;
   height: 100vh;
+  height: 100dvh;
   opacity: 0;
   transition: opacity 0.3s ease;
   width: 100%;
