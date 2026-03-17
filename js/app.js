@@ -572,4 +572,18 @@ class CelloTuner {
 // Initialize tuner when DOM is ready
 document.addEventListener("DOMContentLoaded", () => {
   window.celloTuner = new CelloTuner();
+
+  // Auto-start tuner when running as PWA
+  const isPWA =
+    window.matchMedia("(display-mode: standalone)").matches ||
+    window.navigator.standalone === true;
+
+  if (isPWA) {
+    // Small delay to ensure UI is ready
+    setTimeout(() => {
+      if (window.celloTuner && !window.celloTuner.isRunning) {
+        window.celloTuner.start();
+      }
+    }, 500);
+  }
 });
